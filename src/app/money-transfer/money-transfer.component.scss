@@ -1,0 +1,38 @@
+@import "../.././styles/vars";
+form {
+  background: #ffffff;
+  border-radius: 15px;
+  .transfer-title {
+    background: #02a1e0;
+    color: #fbfdfe;
+    padding: 15px;
+    border-radius: 15px 15px 0 0;
+    .lni-credit-cards {
+      padding-right: 10px;
+    }
+  }
+  .transfer-details {
+    padding: 15px;
+    min-height: 340px;
+  }
+  .submit-btn {
+    background: $submit-btn-bg-color;
+    color: #fbfdfe;
+  }
+
+  .form-control.is-invalid {
+    background-image: none;
+  }
+}
+
+.modal-body {
+  .review-details {
+    margin-bottom: 15px;
+  }
+}
+
+.modal-footer {
+  .submit-btn {
+    background: $submit-btn-bg-color;
+  }
+}

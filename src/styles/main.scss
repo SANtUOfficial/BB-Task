@@ -1,0 +1,23 @@
+@import "./vars";
+.logo {
+  margin: 20px 15px;
+}
+// .lni {
+//   margin-right: 10px;
+// }
+::-webkit-input-placeholder {
+  font-style: $place-holder-font-style;
+  font-size: $place-holder-font-size;
+}
+:-moz-placeholder {
+  font-style: $place-holder-font-style;
+  font-size: $place-holder-font-size;
+}
+::-moz-placeholder {
+  font-style: $place-holder-font-style;
+  font-size: $place-holder-font-size;
+}
+:-ms-input-placeholder {
+  font-style: $place-holder-font-style;
+  font-size: $place-holder-font-size;
+}

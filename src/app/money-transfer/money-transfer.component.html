@@ -1,0 +1,112 @@
+<form [formGroup]="moneyTransferForm">
+  <div class="transfer-title">
+    <i class="lni lni-credit-cards"></i>
+    <strong>Make</strong> Transfer
+  </div>
+  <div class="transfer-details">
+    <div class="form-group">
+      <label for="accountBalance">From Account</label>
+      <input
+        disabled
+        type="text"
+        class="form-control"
+        id="accountBalance"
+        formControlName="accountBalance"
+        placeholder="My Personal Account: {{ accountBalance }}"
+      />
+    </div>
+    <div class="form-group">
+      <label for="toAccount">To Account</label>
+      <input
+        type="text"
+        formControlName="accountName"
+        class="form-control"
+        id="toAccount"
+        placeholder=" type an account name"
+      />
+    </div>
+    <div class="form-group">
+      <label for="amount">Amount</label>
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="amount"
+            ><i class="lni lni-euro"></i
+          ></span>
+        </div>
+        <input
+          type="text"
+          formControlName="amount"
+          class="form-control"
+          id="amount"
+          placeholder="specify the amount"
+          [ngClass]="{
+            'is-invalid':
+              submitted &&
+              (formControls.amount?.errors ||
+                inSufficientBalance ||
+                minBalanceRequired)
+          }"
+        />
+        <div *ngIf="inSufficientBalance" class="invalid-feedback">
+          There is not enough balance
+        </div>
+        <div *ngIf="minBalanceRequired" class="invalid-feedback">
+          Minimum balance required
+        </div>
+
+        <div
+          *ngIf="submitted && formControls.amount?.errors?.required"
+          class="invalid-feedback"
+        >
+          This field is required
+        </div>
+      </div>
+    </div>
+    <app-submit-button
+      class="float-right"
+      (submitForm)="onSubmit(reviewTranferModal)"
+    ></app-submit-button>
+  </div>
+</form>
+{{ moneyTransferForm.value | json }}
+<ng-template #reviewTranferModal let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title" id="editProfileLabel">
+      <strong>Review</strong> Transfer
+    </h5>
+    <button
+      type="button"
+      class="close"
+      (click)="modal.dismiss()"
+      aria-label="Close"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <p><i>Are you ready to send out this transfer?</i></p>
+    <div class="review-details">
+      <strong>It will be send to Account:</strong>
+      <div>{{ formControls.accountName.value }}</div>
+    </div>
+
+    <div class="review-details">
+      <strong>With the amount of:</strong>
+      <div>
+        {{ formControls.amount.value | currency: "EUR" }}
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-dark"
+      (click)="modal.dismiss()"
+    >
+      Close
+    </button>
+    <app-submit-button (submitForm)="transferAmount()"></app-submit-button>
+  </div>
+</ng-template>

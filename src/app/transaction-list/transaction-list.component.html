@@ -1,0 +1,41 @@
+<div class="transaction-history">
+  <div class="transfer-list-title">
+    <i class="lni lni-list"></i>Transaction <strong>List</strong>
+  </div>
+  <!-- <div class="filter-control"></div> -->
+
+  <div class="list-container">
+    <app-filter (inputChange)="filterTransactions($event)"></app-filter>
+    <app-transaction-item
+      class="flex-container"
+      *ngFor="let item of transactionHistory | dateSortByDesc"
+    >
+      <span
+        data-test-hook="transactionColour"
+        [style.background]="item.categoryCode"
+        class="category-code"
+      ></span>
+      <span data-test-hook="transactionDate" class="date">{{
+        item.dates.valueDate | date: "MMM. d"
+      }}</span>
+      <div data-test-hook="transactionMerchantName" class="merchant-name">
+        <strong> {{ item.merchant.name }}</strong>
+      </div>
+      <div data-test-hook="transactionType">{{ item.transaction.type }}</div>
+      <div
+        data-test-hook="transactionAmount"
+        class="transaction-amount"
+        [ngClass]="
+          item.transaction.creditDebitIndicator == 'CRDT'
+            ? 'credit-transaction'
+            : 'debt-amount'
+        "
+      >
+        {{
+          item.transaction.amountCurrency.amount
+            | currency: item.transaction.amountCurrency.currencyCode
+        }}
+      </div>
+    </app-transaction-item>
+  </div>
+</div>
