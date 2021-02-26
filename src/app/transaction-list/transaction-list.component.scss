@@ -1,49 +1,48 @@
 @import "./../../styles/vars";
 .transaction-history {
-  // background: $account-details-background-color;
   min-height: 380px;
-}
-.transfer-list-title {
-  background: $title-background-color;
-  color: #fbfdfe;
-  padding: 15px;
-  border-radius: 15px 15px 0 0;
-  .lni-list {
-    padding-right: 10px;
+  .transfer-list-title {
+    background: $title-background-color;
+    color: #fbfdfe;
+    padding: 15px;
+    border-radius: 15px 15px 0 0;
+    .lni-list {
+      padding-right: 10px;
+    }
   }
-}
-.list-container {
-  background: $account-details-background-color;
-  padding-left: 15px;
-  padding-top: 1px;
-}
-.filter-control {
-  background: $account-details-background-color;
-}
-.flex-category-code {
-  width: 5px;
-  display: inline-block;
-}
-.flex-container {
-  display: flex;
-  align-content: flex-start;
-  height: 80px;
-  margin: 10px 0;
-}
-.date {
-  margin: 20px 0 0 10px;
-  width: 10%;
-}
-.merchant-name {
-  width: 300px;
-}
+  .list-container {
+    background: $account-details-background-color;
+    padding-left: 15px;
+    padding-top: 1px;
+    .filter-control {
+      background: $account-details-background-color;
+    }
+    .category-code {
+      width: 5px;
+      display: inline-block;
+    }
+    .flex-container {
+      display: flex;
+      align-content: flex-start;
+      height: 80px;
+      margin: 10px 0;
+    }
+    .date {
+      margin: 20px 0 0 10px;
+      width: 10%;
+    }
+    .merchant-name {
+      width: 300px;
+    }
 
-.transaction-amount {
-  padding-right: 15px;
-}
-.credit-transaction {
-  color: green;
-}
-.debt-amount {
-  color: red;
+    .transaction-amount {
+      padding-right: 15px;
+    }
+    .credit-transaction {
+      color: green;
+    }
+    .debt-amount {
+      color: red;
+    }
+  }
 }
