@@ -38,11 +38,6 @@ describe('MoneyTransferComponent', () => {
     expect(isFormValid).toBeFalsy();
   });
 
-  it('should reset the form', () => {
-    component.resetFormControls();
-    expect(component.moneyTransferForm.status).toEqual('VALID');
-  });
-
   it('should transfer amount from the account', () => {
     spyOn(component, 'debtFromAccount');
     spyOn(component, 'resetFormControls');

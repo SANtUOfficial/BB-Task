@@ -4,10 +4,12 @@
   </div>
 
   <div class="list-container">
-    <app-filter (inputChange)="filterTransactions($event)"></app-filter>
+    <app-filter (inputChange)="filterValue($event)"></app-filter>
     <app-transaction-item
       class="flex-container"
-      *ngFor="let item of transactionHistory | dateSortByDesc"
+      *ngFor="
+        let item of transactionHistory | filter: filterString | dateSortByDesc
+      "
     >
       <span
         data-test-hook="transactionColour"

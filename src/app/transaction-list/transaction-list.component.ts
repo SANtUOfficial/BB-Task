@@ -15,6 +15,7 @@ export class TransactionListComponent implements OnInit, OnDestroy {
   initialTransactionHistory: TransactionItem[];
   transactionHistorySubscription$: Subscription;
   notifierServiceSubscription$: Subscription;
+  filterString: string;
 
   constructor(
     private transactionService: TransactionService,
@@ -32,16 +33,17 @@ export class TransactionListComponent implements OnInit, OnDestroy {
       .getTransactionDetails()
       .subscribe((transactionObj) => {
         this.transactionHistory = [...this.transactionHistory, transactionObj];
+        this.initialTransactionHistory = [
+          ...this.initialTransactionHistory,
+          transactionObj,
+        ];
       });
   }
 
-  filterTransactions(value): void {
-    this.transactionHistory = this.initialTransactionHistory.filter(
-      (item: TransactionItem) => {
-        return item.merchant.name.toLowerCase().includes(value.toLowerCase());
-      }
-    );
+  filterValue(value: string): void {
+    this.filterString = value;
   }
+
   ngOnDestroy(): void {
     this.transactionHistorySubscription$.unsubscribe();
     this.notifierServiceSubscription$.unsubscribe();

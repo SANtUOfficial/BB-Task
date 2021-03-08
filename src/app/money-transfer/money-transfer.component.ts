@@ -1,10 +1,9 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {
   AbstractControl,
-  FormArray,
   FormBuilder,
-  FormControl,
   FormGroup,
+  FormGroupDirective,
   Validators,
 } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -70,15 +69,13 @@ export class MoneyTransferComponent implements OnInit {
 
   resetFormControls(): void {
     this.moneyTransferForm.reset();
-    this.moneyTransferForm.markAsUntouched();
 
-    Object.keys(this.moneyTransferForm.controls).forEach((name) => {
-      const control = this.formControls[name];
-      control.setErrors(null);
-    });
     this.moneyTransferForm.controls.accountBalance.setValue(
       this.accountBalance
     );
+    this.moneyTransferForm.controls.amount.markAsPristine();
+    this.moneyTransferForm.controls.amount.setValidators([Validators.required]);
+    this.moneyTransferForm.updateValueAndValidity();
   }
 
   isFormValid(): boolean {
@@ -92,7 +89,7 @@ export class MoneyTransferComponent implements OnInit {
   }
   updateTransactionHistory(): void {
     const amount = this.moneyTransferForm.value.amount;
-    const name = this.moneyTransferForm.value.accountName;
+    const name = this.moneyTransferForm.value.accountName || '';
     const transactionDate = this.getTransactionDate();
 
     const obj = {

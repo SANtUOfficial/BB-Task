@@ -12,6 +12,7 @@ import { DateSortByDescPipe } from './shared/pipes/date-sort-by-desc.pipe';
 import { BbUIModule } from './bb-ui/bb-ui.module';
 import { PrefixTextPipe } from './shared/pipes/prefix-text.pipe';
 import { TransactionNotifierService } from './shared/services/transaction-notifier.service';
+import { FilterPipe } from './shared/pipes/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { TransactionNotifierService } from './shared/services/transaction-notifi
     TransactionListComponent,
     DateSortByDescPipe,
     PrefixTextPipe,
+    FilterPipe,
   ],
   imports: [
     BrowserModule,

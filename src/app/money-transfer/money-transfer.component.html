@@ -35,6 +35,8 @@
         </div>
         <input
           type="number"
+          min="0"
+          oninput="validity.valid||(value='');"
           formControlName="amount"
           class="form-control"
           id="amount"
