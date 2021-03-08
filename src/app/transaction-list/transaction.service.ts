@@ -8,6 +8,7 @@ import { TransactionItem } from '../shared/types/types';
 })
 export class TransactionService {
   constructor(private http: HttpClient) {}
+
   /** GET transaction data from the server */
   getTransactionHistory(): Observable<TransactionItem[]> {
     return this.http.get<TransactionItem[]>('assets/data.json');

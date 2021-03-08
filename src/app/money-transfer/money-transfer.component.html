@@ -11,8 +11,7 @@
         type="text"
         class="form-control"
         id="accountBalance"
-        formControlName="accountBalance"
-        placeholder="My Personal Account: {{ accountBalance }}"
+        [value]="moneyTransferForm.get('accountBalance').value | prefixText"
       />
     </div>
     <div class="form-group">
@@ -35,26 +34,19 @@
           ></span>
         </div>
         <input
-          type="text"
+          type="number"
           formControlName="amount"
           class="form-control"
           id="amount"
           placeholder="specify the amount"
           [ngClass]="{
             'is-invalid':
-              submitted &&
-              (formControls.amount?.errors ||
-                inSufficientBalance ||
-                minBalanceRequired)
+              submitted && (formControls.amount?.errors || inSufficientBalance)
           }"
         />
         <div *ngIf="inSufficientBalance" class="invalid-feedback">
           There is not enough balance
         </div>
-        <div *ngIf="minBalanceRequired" class="invalid-feedback">
-          Minimum balance required
-        </div>
-
         <div
           *ngIf="submitted && formControls.amount?.errors?.required"
           class="invalid-feedback"

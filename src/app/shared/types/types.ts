@@ -2,14 +2,14 @@ export interface TransactionItem {
   id: string;
   merchant: {
     name: string;
-    accountNumber: string;
+    accountNumber?: string;
   };
   dates: {
     valueDate: number | Date;
   };
   categoryCode: string;
   transaction: {
-    type: string;
+    type?: string;
     creditDebitIndicator: string;
     amountCurrency: {
       currencyCode: string;

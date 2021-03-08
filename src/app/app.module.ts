@@ -10,6 +10,8 @@ import { TransactionListComponent } from './transaction-list/transaction-list.co
 import { HttpClientModule } from '@angular/common/http';
 import { DateSortByDescPipe } from './shared/pipes/date-sort-by-desc.pipe';
 import { BbUIModule } from './bb-ui/bb-ui.module';
+import { PrefixTextPipe } from './shared/pipes/prefix-text.pipe';
+import { TransactionNotifierService } from './shared/services/transaction-notifier.service';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,7 @@ import { BbUIModule } from './bb-ui/bb-ui.module';
     MoneyTransferComponent,
     TransactionListComponent,
     DateSortByDescPipe,
+    PrefixTextPipe,
   ],
   imports: [
     BrowserModule,
@@ -27,7 +30,7 @@ import { BbUIModule } from './bb-ui/bb-ui.module';
     BbUIModule,
     NgbModule,
   ],
-  providers: [],
+  providers: [TransactionNotifierService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

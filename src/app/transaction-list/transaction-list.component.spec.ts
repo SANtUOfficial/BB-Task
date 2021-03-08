@@ -1,4 +1,5 @@
 import { HttpClientModule } from '@angular/common/http';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DateSortByDescPipe } from './../shared/pipes/date-sort-by-desc.pipe';
 import { TransactionListComponent } from './transaction-list.component';
@@ -11,6 +12,7 @@ describe('TransactionListComponent', () => {
     await TestBed.configureTestingModule({
       imports: [HttpClientModule],
       declarations: [TransactionListComponent, DateSortByDescPipe],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
   });
 

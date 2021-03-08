@@ -1,6 +1,7 @@
-import { ElementRef } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, Directive, ElementRef } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PrefixTextPipe } from '../shared/pipes/prefix-text.pipe';
 
 import { MoneyTransferComponent } from './money-transfer.component';
 
@@ -10,8 +11,9 @@ describe('MoneyTransferComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [MoneyTransferComponent],
+      declarations: [MoneyTransferComponent, PrefixTextPipe],
       imports: [FormsModule, ReactiveFormsModule],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
   });
 
@@ -25,10 +27,9 @@ describe('MoneyTransferComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should open review transer modal if the form is valid', () => {
-    let el: ElementRef;
-    spyOn(component, 'isFormValid').and.returnValue(true);
-    component.onSubmit(el);
+  it('should change the value of submitted, onSubmit trigger', () => {
+    component.submitted = false;
+    component.onSubmit();
     expect(component.submitted).toBe(true);
   });
 
