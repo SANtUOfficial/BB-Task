@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
+  FormControl,
   FormGroup,
   FormGroupDirective,
   Validators,
@@ -62,27 +63,24 @@ export class MoneyTransferComponent implements OnInit {
 
   transferAmount(): void {
     this.modalService.dismissAll();
-    this.debtFromAccount();
+    this.updateAccountBalance();
     this.updateTransactionHistory();
     this.resetFormControls();
   }
 
   resetFormControls(): void {
+    this.submitted = false;
     this.moneyTransferForm.reset();
-
     this.moneyTransferForm.controls.accountBalance.setValue(
-      this.accountBalance
+      this.accountBalance?.toFixed(2)
     );
-    this.moneyTransferForm.controls.amount.markAsPristine();
-    this.moneyTransferForm.controls.amount.setValidators([Validators.required]);
-    this.moneyTransferForm.updateValueAndValidity();
   }
 
   isFormValid(): boolean {
     return this.moneyTransferForm.valid;
   }
 
-  debtFromAccount(): void {
+  updateAccountBalance(): void {
     this.accountBalance =
       this.moneyTransferForm.value.accountBalance -
       this.moneyTransferForm.value.amount;

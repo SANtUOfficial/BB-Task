@@ -36,14 +36,14 @@
         <input
           type="number"
           min="0"
-          oninput="validity.valid||(value='');"
+          onkeypress="return event.charCode != 45"
           formControlName="amount"
           class="form-control"
           id="amount"
           placeholder="specify the amount"
           [ngClass]="{
             'is-invalid':
-              submitted && (formControls.amount?.errors || inSufficientBalance)
+              (submitted && formControls.amount?.errors) || inSufficientBalance
           }"
         />
         <div *ngIf="inSufficientBalance" class="invalid-feedback">

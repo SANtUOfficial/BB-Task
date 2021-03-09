@@ -38,11 +38,17 @@ describe('MoneyTransferComponent', () => {
     expect(isFormValid).toBeFalsy();
   });
 
+  it('should reset the form status', () => {
+    component.submitted = true;
+    component.resetFormControls();
+    expect(component.submitted).toBeFalsy();
+  });
+
   it('should transfer amount from the account', () => {
-    spyOn(component, 'debtFromAccount');
+    spyOn(component, 'updateAccountBalance');
     spyOn(component, 'resetFormControls');
     component.transferAmount();
-    expect(component.debtFromAccount).toHaveBeenCalled();
+    expect(component.updateAccountBalance).toHaveBeenCalled();
     expect(component.resetFormControls).toHaveBeenCalled();
   });
   it('should debt from the account', () => {
@@ -53,7 +59,7 @@ describe('MoneyTransferComponent', () => {
       amount: 200,
     });
 
-    component.debtFromAccount();
+    component.updateAccountBalance();
     expect(component.accountBalance).toEqual(300);
   });
 });
